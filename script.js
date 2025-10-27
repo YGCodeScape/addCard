@@ -30,4 +30,6 @@ form.addEventListener("submit", function(e) {
     let bioText = document.createElement("span");
     bioText.classList.add("bio-text");
     bioText.textContent = input[3].value;
+
+    
 })
