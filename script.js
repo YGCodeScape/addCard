@@ -1,9 +1,11 @@
 let form = document.querySelector("form");
 let input = document.querySelectorAll("input[type='text']");
+let main = document.querySelector(".main");
 
 form.addEventListener("submit", function(e) {
     e.preventDefault();
 
+    // create elements and get a values from inputs and assign them with class list for styling
     let cardHolder = document.createElement("div");
     cardHolder.classList.add("card-holder");
     
@@ -31,5 +33,23 @@ form.addEventListener("submit", function(e) {
     bioText.classList.add("bio-text");
     bioText.textContent = input[3].value;
 
-    
-})
+    // append the elements to each other so that they shown on the DOM (html page)
+    // append parent elements
+    cardHolder.appendChild(card);
+    card.appendChild(profile);
+    card.appendChild(info);
+    // inner elements to outer elements
+    profile.appendChild(img);
+    info.appendChild(name);
+    info.appendChild(title);
+    info.appendChild(bioText);
+
+    main.appendChild(cardHolder);
+
+    // clear the input fields after submission
+    input.forEach((inp) => {
+       if(inp.type !== "submit") {
+          inp.value = "";
+       }
+    });
+});
