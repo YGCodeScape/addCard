@@ -1,14 +1,11 @@
 let form = document.querySelector("form");
 let input = document.querySelectorAll("input[type='text']");
-let main = document.querySelector(".main");
+let cardHolder = document.querySelector(".card-holder");
 
 form.addEventListener("submit", function(e) {
     e.preventDefault();
 
     // create elements and get a values from inputs and assign them with class list for styling
-    let cardHolder = document.createElement("div");
-    cardHolder.classList.add("card-holder");
-    
     let card = document.createElement("div");
     card.classList.add("card");
 
@@ -35,7 +32,6 @@ form.addEventListener("submit", function(e) {
 
     // append the elements to each other so that they shown on the DOM (html page)
     // append parent elements
-    cardHolder.appendChild(card);
     card.appendChild(profile);
     card.appendChild(info);
     // inner elements to outer elements
@@ -44,7 +40,7 @@ form.addEventListener("submit", function(e) {
     info.appendChild(title);
     info.appendChild(bioText);
 
-    main.appendChild(cardHolder);
+    cardHolder.appendChild(card);
 
     // clear the input fields after submission
     input.forEach((inp) => {
