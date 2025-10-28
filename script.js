@@ -25,6 +25,20 @@ card.addEventListener("mouseleave", function() {
    cursor.style.height = "20px";
 });
 
+form.addEventListener("mouseover", function() {
+   cursor.style.backgroundColor = "transparent";
+   cursor.style.border = "1px solid #fff";
+    cursor.style.width = "80px";
+    cursor.style.height = "80px";
+    cursor.style.zIndex = "0";
+});
+form.addEventListener("mouseleave", function() {
+   cursor.style.backgroundColor = "crimson";
+   cursor.style.border = "none";
+   cursor.style.width = "20px";
+   cursor.style.height = "20px";
+    cursor.style.zIndex = "4";
+});
 
 form.addEventListener("submit", function(e) {
     e.preventDefault();
