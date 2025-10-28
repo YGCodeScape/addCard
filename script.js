@@ -1,6 +1,30 @@
 let form = document.querySelector("form");
 let input = document.querySelectorAll("input[type='text']");
 let cardHolder = document.querySelector(".card-holder");
+let card = document.querySelector(".card");
+
+
+let cursor = document.querySelector(".cursor");
+document.addEventListener("mousemove", function(para){
+  gsap.to(".cursor", {
+    x: para.x,
+    y: para.y,
+    ease: "back.out"
+  })
+});
+card.addEventListener("mousemove", function(para){
+   cursor.style.backgroundColor = "transparent";
+   cursor.style.border = "1px solid #fff";
+    cursor.style.width = "80px";
+    cursor.style.height = "80px";
+})
+card.addEventListener("mouseleave", function() {
+   cursor.style.backgroundColor = "crimson";
+   cursor.style.border = "none";
+   cursor.style.width = "20px";
+   cursor.style.height = "20px";
+});
+
 
 form.addEventListener("submit", function(e) {
     e.preventDefault();
