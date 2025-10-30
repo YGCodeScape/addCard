@@ -1,7 +1,7 @@
 let form = document.querySelector("form");
-let input = document.querySelectorAll("input[type='text']");
+let input = document.querySelectorAll("input[type='text']");      
 let cardHolder = document.querySelector(".card-holder");
-let card = document.querySelector(".card");
+let cards = document.querySelectorAll(".card");
 
 
 let cursor = document.querySelector(".cursor");
@@ -12,32 +12,42 @@ document.addEventListener("mousemove", function(para){
     ease: "back.out"
   })
 });
-card.addEventListener("mousemove", function(para){
-   cursor.style.backgroundColor = "transparent";
-   cursor.style.border = "1px solid #fff";
-    cursor.style.width = "80px";
-    cursor.style.height = "80px";
-})
-card.addEventListener("mouseleave", function() {
-   cursor.style.backgroundColor = "crimson";
-   cursor.style.border = "none";
-   cursor.style.width = "20px";
-   cursor.style.height = "20px";
-});
+
+// helper to attach hover listeners to a card element
+function attachCardHoverListeners(cardEl) {
+    cardEl.addEventListener("mousemove", function(para){
+       cursor.style.backgroundColor = "transparent";
+       cursor.style.border = "1px solid #fff";
+       cursor.style.width = "80px";
+       cursor.style.height = "80px";
+    });
+    cardEl.addEventListener("mouseleave", function() {
+       cursor.style.backgroundColor = "crimson";
+       cursor.style.border = "none";
+       cursor.style.width = "20px";
+       cursor.style.height = "20px";
+    });
+}
+
+// attach to existing cards
+cards.forEach((c) => attachCardHoverListeners(c));
 
 form.addEventListener("mouseover", function() {
    cursor.style.display = "none";
+   cursor.style.zIndex = "0";
 });
 form.addEventListener("mouseleave", function() {
    cursor.style.display = "block";
+   cursor.style.zIndex = "4";
 });
+
 
 form.addEventListener("submit", function(e) {
     e.preventDefault();
 
     // create elements and get a values from inputs and assign them with class list for styling
-    let card = document.createElement("div");
-    card.classList.add("card");
+   let card = document.createElement("div");
+   card.classList.add("card");
 
     let profile = document.createElement("div");
     profile.classList.add("profile");
@@ -70,7 +80,10 @@ form.addEventListener("submit", function(e) {
     info.appendChild(title);
     info.appendChild(bioText);
 
-    cardHolder.appendChild(card);
+   cardHolder.appendChild(card);
+
+   // ensure the newly created card gets the same hover listeners
+   attachCardHoverListeners(card);
 
     // clear the input fields after submission
     input.forEach((inp) => {
